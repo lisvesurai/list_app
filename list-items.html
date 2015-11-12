@@ -1,0 +1,14 @@
+<div ng-controller="ListitemController as listitemCtrl" class="list_items">
+  <ul>
+    <li ng-repeat="listitem in list.listitems track by $index">
+      <input id="done_{{$parent.$index}}_{{$index}}" type="checkbox" data-ng-model="listitem.done" ng-click="listitemCtrl.mark()">
+      <label for="done_{{$parent.$index}}_{{$index}}"></label>
+      <div contenteditable="true" class="done_{{listitem.done}}" data-ng-model="listitem.text">{{listitem.text}}</div>
+      <button data-ng-click="listitemCtrl.del(list,$index)"><i class="icon-trash"></i></button>
+    </li>
+  </ul>
+  <form name="listitemForm" ng-submit="listitemCtrl.add(list)" >
+    <input type="text" ng-model="listitemCtrl.listitem.text" id="inputListitemText{{$index}}" placeholder="Add an item to the list..." />
+    <button class="add" type="submit" title="Add"><i class="icon-plus"></i></button>
+  </form>
+</div>

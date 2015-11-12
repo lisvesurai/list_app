@@ -1,0 +1,6 @@
+<div ng-controller="ColorPickerController as colorPickerCtrl" class="color_picker">
+	<ul ng-repeat="color in colors">
+    <li style="background-color:{{color}};"><label><input type="radio" data-ng-model="list.color" value="{{color}}" ng-click="listCtrl.changeColor(picker)" /></label></li>
+  </ul>
+  <button ng-click="picker.setPicker(-1)" class="close"><i class="icon-cancel"></i></button>
+</div>

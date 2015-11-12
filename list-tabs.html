@@ -1,0 +1,12 @@
+<ul class="list_tabs">
+  <li ng-repeat="list in lists track by $index" style="background-color:{{list.color}}" data-ng-click="tab.setTab($index)">
+    <div contenteditable="true" data-ng-model="list.name" class="list_name">{{list.name}}</div>
+    <div class="controls">
+      <button data-ng-click="picker.setPicker($index)" title="Change Color"><i class="icon-brush"></i></button>
+      <button data-ng-click="listCtrl.del($index)" title="Delete"><i class="icon-trash"></i></button>
+    </div>
+    <list-items ng-show="tab.isSet($index)"></list-items>
+    <color-picker ng-show="picker.isSet($index)"></color-picker>
+  </li>
+</ul>
+<a name="newlist"></a>
