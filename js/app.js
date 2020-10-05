@@ -1,16 +1,39 @@
 (function() {
   var app = angular.module('listApp', ['list-directives']);
+  var defaultColors = [
+        '#ed5151',
+        '#ed8551',
+        '#edb951',
+        '#eded51',
+        '#b9ed51',
+        '#85ed51',
+        '#51ed51',
+        '#51ed85',
+        '#51edb9',
+        '#51eded',
+        '#51b9ed',
+        '#5185ed',
+		'#5151ed',
+		'#8551ed',
+		'#b951ed',
+		'#ed51ed',
+		'#ed51b9',
+		'#ed5185',
+		'#909090',
+		'#eeeeee'
+  ];
 
   app.controller('ListController', function($scope) {
 		$scope.saved = localStorage.getItem('lists');
 		$scope.lists = (localStorage.getItem('lists')!==null) ? JSON.parse($scope.saved) : [];
+		$scope.colors = defaultColors;
 		localStorage.setItem('lists', JSON.stringify($scope.lists));
 
 		$scope.add = function(tab) {
 			$scope.lists.push({
 				name: $scope.listName,
 				listitems: [],
-				color: '#909090'
+				color: $scope.colors[Math.floor(Math.random() * $scope.colors.length)]
 			});
 			$scope.listName = '';
 			localStorage.setItem('lists', JSON.stringify($scope.lists));
@@ -54,28 +77,6 @@
   });
 	
   app.controller('ColorPickerController', function($scope) {
-		var defaultColors = [
-        '#ed5151',
-        '#ed8551',
-        '#edb951',
-        '#eded51',
-        '#b9ed51',
-        '#85ed51',
-        '#51ed51',
-        '#51ed85',
-        '#51edb9',
-        '#51eded',
-        '#51b9ed',
-        '#5185ed',
-				'#5151ed',
-				'#8551ed',
-				'#b951ed',
-				'#ed51ed',
-				'#ed51b9',
-				'#ed5185',
-				'#909090',
-				'#eeeeee'
-		];
 		$scope.colors = defaultColors;
   });
 })();
